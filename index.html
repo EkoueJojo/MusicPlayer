@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Music Player</title>
+	<link rel="stylesheet" href="./styles/style.css" type="text/css">
+</head>
+
+<body>
+	<header>
+		<a href="./index.html"><h1>Music Player</h1></a>
+	</header>
+	<main>
+		<section id="PlaylistContainer"></section>
+		<section id="PlaylistCreationContainer">
+			<button onclick="document.getElementById('YoutubePlaylistCreationPopup').showModal();">Importer une playlist à partir de YouTube</button>
+			<button onclick="OpenCustomPlaylistCreationPopup()">Créer une playlist personnalisée</button>
+		</section>
+		<dialog id="YoutubePlaylistCreationPopup">
+			<form method="dialog">
+				<p><label>Titre : <input id="YoutubePlaylistTitle" type="text" name="PlaylistTitle"></label></p>
+				<p><label>Id de la playlist : <input id="YoutubePlaylistId" type="text" name="PlaylistId"></label></p>
+				<p><button type="submit" onclick="createPlaylist(document.getElementById('YoutubePlaylistTitle').value, document.getElementById('YoutubePlaylistId').value)">Créer</button>
+				<button type="submit">Annuler</button></p>
+			</form>
+		</dialog>
+		<dialog id="CustomPlaylistCreationPopup">
+			<form method="dialog">
+				<p><label>Titre : <input id="CustomPlaylistTitle" type="text" name="PlaylistTitle"></label></p>
+				<p><label>Ids des vidéos : <textarea id="CustomPlaylistId" name="PlaylistId"></textarea></label></p>
+				<p><button id="CreateCustomPlaylistButton" type="submit" onclick="createPlaylist(document.getElementById('CustomPlaylistTitle').value, JSON.parse(document.getElementById('CustomPlaylistId').value));">Créer</button>
+				<button type="submit">Annuler</button></p>
+			</form>
+		</dialog>
+		<p><textarea name="ImportArea" id="ImportArea" cols="30" rows="10"></textarea></p>
+		<button onclick="ImportPlaylists()">Importer</button>
+	</main>
+	<script src="./scripts/Playlist.js"></script>
+	<script src="./scripts/playlists.js"></script>
+</body>
+
+</html>
