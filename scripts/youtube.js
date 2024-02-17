@@ -40,7 +40,7 @@ function onYouTubeIframeAPIReady()
 				ListPlaylistVideos();
 
 				playlist = originalPlaylist;
-				player.cueVideoById(playlist[0]);
+				player.cueVideoById(playlist[0].id);
 
 				for (let button of document.getElementById("MediaButtons").children)
 				{
@@ -67,6 +67,7 @@ function onYouTubeIframeAPIReady()
 				}
 
 				UpdateView();
+				UpdateVideoName();
 			}
 		}
 	};
@@ -109,8 +110,24 @@ function UpdateView()
 	}
 
 	currentPlaylistVideo = document.getElementsByClassName("PlaylistVideo")[originalPlaylist.indexOf(playlist[videoIndex])];
-	currentPlaylistVideo.id = "CurrentPlaylistVideo";
-	currentPlaylistVideo.scrollIntoView({ behavior: "smooth", block: "center" });
+
+	if (currentPlaylistVideo != null)
+	{
+		currentPlaylistVideo.id = "CurrentPlaylistVideo";
+		currentPlaylistVideo.scrollIntoView({ behavior: "smooth", block: "center" });
+	}
+}
+
+function UpdateVideoName()
+{
+	if (playlist[videoIndex].title == null)
+	{
+		playlist[videoIndex].title = player.videoTitle;
+		document.getElementById("CurrentPlaylistVideo").firstElementChild.firstElementChild.innerText = player.videoTitle;
+		let newList = JSON.parse(localStorage.getItem("Playlists"));
+		newList[playlistIndex] = list;
+		localStorage.setItem("Playlists", JSON.stringify(newList));
+	}
 }
 
 function EnableButtons()
@@ -133,8 +150,9 @@ function Play()
 
 function LoadVideo()
 {
-	player.loadVideoById(playlist[videoIndex]);
+	player.loadVideoById(playlist[videoIndex].id);
 	EnableButtons();
+	UpdateVideoName();
 }
 
 function LoadPreviousVideo()
@@ -193,14 +211,25 @@ function ListPlaylistVideos()
 {
 	let listElement = document.getElementById("Playlist");
 
-	for (let videoId of originalPlaylist)
+	for (let i = 0; i < originalPlaylist.length; i++)
 	{
+		let video = originalPlaylist[i];
 		let videoLi = document.createElement("li");
 		videoLi.className = "PlaylistVideo";
 		let videoContainer = document.createElement("div");
 		let videoTitle = document.createElement("p");
+		videoContainer.title = "Play";
+		videoContainer.addEventListener
+		(
+			"click",
+			function ()
+			{
+				videoIndex = playlist.indexOf(video);
+				LoadVideo();
+			}
+		)
 
-		videoTitle.innerText = videoId;
+		videoTitle.innerText = video.title ?? video.id;
 
 		videoContainer.appendChild(videoTitle);
 		videoLi.appendChild(videoContainer);
