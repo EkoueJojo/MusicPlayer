@@ -120,14 +120,11 @@ function UpdateView()
 
 function UpdateVideoName()
 {
-	if (playlist[videoIndex].title == null)
-	{
-		playlist[videoIndex].title = player.videoTitle;
-		document.getElementById("CurrentPlaylistVideo").firstElementChild.firstElementChild.innerText = player.videoTitle;
-		let newList = JSON.parse(localStorage.getItem("Playlists"));
-		newList[playlistIndex] = list;
-		localStorage.setItem("Playlists", JSON.stringify(newList));
-	}
+	playlist[videoIndex].title = player.videoTitle;
+	document.getElementById("CurrentPlaylistVideo").firstElementChild.firstElementChild.innerText = player.videoTitle;
+	let newList = JSON.parse(localStorage.getItem("Playlists"));
+	newList[playlistIndex] = list;
+	localStorage.setItem("Playlists", JSON.stringify(newList));
 }
 
 function EnableButtons()
@@ -229,7 +226,7 @@ function ListPlaylistVideos()
 			}
 		)
 
-		videoTitle.innerText = video.title ?? video.id;
+		videoTitle.innerText = video.title != null && video.title != "" ? video.title : video.id;
 
 		videoContainer.appendChild(videoTitle);
 		videoLi.appendChild(videoContainer);

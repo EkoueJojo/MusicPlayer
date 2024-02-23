@@ -10,16 +10,23 @@ showPlaylists();
 /**
  * Create a list of music tracks based on a YouTube playlist or a custom list of different videos
  * @param {string} title
- * @param {string[] | string} list
+ * @param {string} textList
  */
-function createPlaylist(title, list)
+function createPlaylist(title, textList)
 {
 	if (title == "")
 		return;
-	if (list == "")
+	if (textList == "")
 		return;
 
 	let playlists = JSON.parse(localStorage.getItem("Playlists")) ?? [];
+
+	let list = [];
+
+	for (let videoId of textList.split(","))
+	{
+		list.push({ title: "", id: videoId.trim() });
+	}
 
 	playlists[editNumber ?? playlists.length] = new Playlist(title, list);
 	playlists.sort((a, b) => a.title.localeCompare(b.title));

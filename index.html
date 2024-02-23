@@ -30,8 +30,8 @@
 		<dialog id="CustomPlaylistCreationPopup">
 			<form method="dialog">
 				<p><label>Titre : <input id="CustomPlaylistTitle" type="text" name="PlaylistTitle"></label></p>
-				<p><label>Ids des vidéos : <textarea id="CustomPlaylistId" name="PlaylistId"></textarea></label></p>
-				<p><button id="CreateCustomPlaylistButton" type="submit" onclick="createPlaylist(document.getElementById('CustomPlaylistTitle').value, JSON.parse(document.getElementById('CustomPlaylistId').value));">Créer</button>
+				<p><label>Ids des vidéos (séparer les ids par des virgules) : <textarea id="CustomPlaylistId" name="PlaylistId"></textarea></label></p>
+				<p><button id="CreateCustomPlaylistButton" type="submit" onclick="createPlaylist(document.getElementById('CustomPlaylistTitle').value, document.getElementById('CustomPlaylistId').value);">Créer</button>
 				<button type="submit">Annuler</button></p>
 			</form>
 		</dialog>
