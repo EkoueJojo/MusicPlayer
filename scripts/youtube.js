@@ -148,6 +148,7 @@ function Play()
 function LoadVideo()
 {
 	player.loadVideoById(playlist[videoIndex].id);
+	SetVolume();
 	EnableButtons();
 	UpdateVideoName();
 }
@@ -204,6 +205,25 @@ function EnableRandom(event)
 	event.target.style.backgroundColor = randomIsEnabled ? "forestgreen" : "";
 }
 
+function ChangeVolume()
+{
+	playlist[playlistIndex].volume = document.getElementById("VideoVolumeSlider").value;
+	SetVolume();
+}
+
+function SetVolume()
+{
+	if (playlist[playlistIndex].volume == null)
+	{
+		playlist[playlistIndex].volume = 100;
+	}
+
+	let volume = playlist[playlistIndex].volume;
+
+	player.setVolume(volume);
+	document.getElementById("VideoVolumeSlider").value = volume;
+}
+
 function ListPlaylistVideos()
 {
 	let listElement = document.getElementById("Playlist");
@@ -214,8 +234,9 @@ function ListPlaylistVideos()
 		let videoLi = document.createElement("li");
 		videoLi.className = "PlaylistVideo";
 		let videoContainer = document.createElement("div");
-		let videoTitle = document.createElement("p");
 		videoContainer.title = "Play";
+		let videoTitle = document.createElement("p");
+
 		videoContainer.addEventListener
 		(
 			"click",

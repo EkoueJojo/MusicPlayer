@@ -80,6 +80,32 @@ textarea
 	display: inline-block;
 }
 
+#VideoVolumeSlider
+{
+	-webkit-appearance: none;
+	appearance: none;
+	width: 75%;
+	height: 7.5px;
+	margin: 0;
+	outline: none;
+	opacity: 0.7;
+	background-color: var(--buttonBackgroundColor);
+}
+
+#VideoVolumeSlider:hover
+{
+	opacity: 1;
+}
+
+#VideoVolumeSlider::-webkit-slider-thumb, #VideoVolumeSlider::-moz-range-thumb
+{
+	-webkit-appearance: none;
+	appearance: none;
+	height: 100px;
+	background-color: var(--buttonColor);
+	border: solid salmon;
+}
+
 #PlaylistContainer h2
 {
 	display: inline-block;
@@ -131,6 +157,7 @@ textarea
 	bottom: 0;
 	left: 0;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: center;
 	box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.5);

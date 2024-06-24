@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>YouTube Music Player</title>
 	<link rel="stylesheet" href="../styles/style.css" type="text/css">
+	<link rel="icon" href="/favicon.png" type="image/png">
 </head>
 
 <body>
@@ -25,6 +26,7 @@
 						<button id="Play" name="Play" onclick="Play()" disabled>▶</button>
 						<button id="Next" name="Next" onclick="LoadNextVideo()" disabled>⏭</button>
 						<button id="Random" name="Random" onclick="EnableRandom(event)" disabled>🔀</button>
+						<input type="range" name="VideoVolumeSlider" id="VideoVolumeSlider" min="0" max="100" value="100" onchange="ChangeVolume()">
 					</div>
 				</div>
 				<div id="MusicTracksContainer">
