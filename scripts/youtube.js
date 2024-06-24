@@ -14,6 +14,8 @@ let videoIsPlaying = false;
 let randomIsEnabled = false;
 let startedPlaying = false;
 
+document.getElementById("VideoVolumeSlider").addEventListener("click", ChangeVolume);
+
 function onYouTubeIframeAPIReady()
 {
 	if (list == null)
@@ -148,7 +150,7 @@ function Play()
 function LoadVideo()
 {
 	player.loadVideoById(playlist[videoIndex].id);
-	SetVolume();
+	SetVideoVolume();
 	EnableButtons();
 	UpdateVideoName();
 }
@@ -207,18 +209,19 @@ function EnableRandom(event)
 
 function ChangeVolume()
 {
-	playlist[playlistIndex].volume = document.getElementById("VideoVolumeSlider").value;
-	SetVolume();
+	playlist[videoIndex].volume = parseInt(document.getElementById("VideoVolumeSlider").value);
+	SetVideoVolume();
+	// localStorage.setItem("Playlists", JSON.stringify(playlist));
 }
 
-function SetVolume()
+function SetVideoVolume()
 {
-	if (playlist[playlistIndex].volume == null)
+	if (playlist[videoIndex].volume == null)
 	{
-		playlist[playlistIndex].volume = 100;
+		playlist[videoIndex].volume = 100;
 	}
 
-	let volume = playlist[playlistIndex].volume;
+	let volume = playlist[videoIndex].volume;
 
 	player.setVolume(volume);
 	document.getElementById("VideoVolumeSlider").value = volume;
