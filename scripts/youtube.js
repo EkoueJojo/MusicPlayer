@@ -211,7 +211,9 @@ function ChangeVolume()
 {
 	playlist[videoIndex].volume = parseInt(document.getElementById("VideoVolumeSlider").value);
 	SetVideoVolume();
-	// localStorage.setItem("Playlists", JSON.stringify(playlist));
+	let playlistsInStorage = JSON.parse(localStorage.getItem("Playlists"));
+	playlistsInStorage[playlistIndex].tracks[videoIndex].volume = parseInt(document.getElementById("VideoVolumeSlider").value);
+	localStorage.setItem("Playlists", JSON.stringify(playlistsInStorage));
 }
 
 function SetVideoVolume()
