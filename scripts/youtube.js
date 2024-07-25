@@ -123,7 +123,12 @@ function UpdateView()
 function UpdateVideoName()
 {
 	playlist[videoIndex].title = player.videoTitle;
-	document.getElementById("CurrentPlaylistVideo").firstElementChild.firstElementChild.innerText = player.videoTitle;
+
+	if (player.videoTitle != "")
+	{
+		document.getElementById("CurrentPlaylistVideo").firstElementChild.firstElementChild.innerText = player.videoTitle;
+	}
+
 	let newList = JSON.parse(localStorage.getItem("Playlists"));
 	newList[playlistIndex] = list;
 	localStorage.setItem("Playlists", JSON.stringify(newList));
