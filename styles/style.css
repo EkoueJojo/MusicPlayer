@@ -75,6 +75,13 @@ textarea
 	tab-size: 4;
 }
 
+a
+{
+	width: fit-content;
+	display: block;
+	margin: auto;
+}
+
 .PlaylistVideo div
 {
 	display: inline-block;
