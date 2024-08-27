@@ -82,6 +82,11 @@ a
 	margin: auto;
 }
 
+a:has(button)
+{
+	display: initial;
+}
+
 .PlaylistVideo div
 {
 	display: inline-block;
