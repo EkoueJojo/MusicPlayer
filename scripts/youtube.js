@@ -252,8 +252,11 @@ function ListPlaylistVideos()
 			"click",
 			function ()
 			{
-				videoIndex = playlist.indexOf(video);
-				LoadVideo();
+				if (videoIndex != playlist.indexOf(video))
+				{
+					videoIndex = playlist.indexOf(video);
+					LoadVideo();
+				}
 			}
 		)
 

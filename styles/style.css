@@ -75,6 +75,13 @@ textarea
 	tab-size: 4;
 }
 
+ol p
+{
+	display: flex;
+	margin: 0;
+	line-height: 2em;
+}
+
 a
 {
 	width: fit-content;
@@ -90,6 +97,9 @@ a:has(button)
 .PlaylistVideo div
 {
 	display: inline-block;
+	width: 90%;
+	line-height: 3em;
+	margin: .6em 0;
 }
 
 #VideoVolumeSlider
@@ -185,6 +195,7 @@ a:has(button)
 #MusicTracksContainer
 {
 	width: fit-content;
+	max-width: 500px;
 	overflow: hidden;
 	background-color: var(--musicTracksContainerBackgroundColor);
 	border-radius: 10px;
