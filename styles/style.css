@@ -104,14 +104,16 @@ a:has(button)
 
 #VideoVolumeSlider
 {
-	-webkit-appearance: none;
-	appearance: none;
 	width: 75%;
-	height: 7.5px;
+	height: 5px;
 	margin: 0;
-	outline: none;
-	opacity: 0.7;
 	background-color: var(--buttonBackgroundColor);
+	opacity: 0.7;
+	border: solid 0.5px var(--buttonColor);
+	border-radius: 100px;
+	appearance: none;
+	-webkit-appearance: none;
+	outline: none;
 }
 
 #VideoVolumeSlider:hover
@@ -119,13 +121,36 @@ a:has(button)
 	opacity: 1;
 }
 
-#VideoVolumeSlider::-webkit-slider-thumb, #VideoVolumeSlider::-moz-range-thumb
+#VideoVolumeSlider::-webkit-slider-thumb
 {
-	-webkit-appearance: none;
 	appearance: none;
-	height: 100px;
+	-webkit-appearance: none;
+	width: 5px;
+	height: 5px;
 	background-color: var(--buttonColor);
-	border: solid salmon;
+	border-radius: 50px;
+	transition: scale 0.1s ease-in-out;
+}
+
+#VideoVolumeSlider::-moz-slider-thumb
+{
+	appearance: none;
+	-webkit-appearance: none;
+	width: 5px;
+	height: 5px;
+	background-color: var(--buttonColor);
+	border-radius: 50px;
+	transition: scale 0.1s ease-in-out;
+}
+
+#VideoVolumeSlider::-webkit-slider-thumb:hover
+{
+	scale: 2;
+}
+
+#VideoVolumeSlider::-moz-slider-thumb:hover
+{
+	scale: 2;
 }
 
 #PlaylistContainer h2
@@ -235,7 +260,21 @@ a:has(button)
 	background-color: var(--playlistScrollBarColor);
 }
 
+#Playlist::-moz-scrollbar
+{
+	width: 10px;
+	background-color: var(--playlistScrollBarColor);
+}
+
 #Playlist::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: var(--playlistScrollBarThumbColor);
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+
+#Playlist::-moz-scrollbar-thumb
 {
 	border-radius: 10px;
 	background-color: var(--playlistScrollBarThumbColor);
