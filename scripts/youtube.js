@@ -216,13 +216,13 @@ function EnableRandom(event)
 
 function ChangeVolume()
 {
-	sessionStorage.setItem("Volume", parseInt(document.getElementById("VideoVolumeSlider").value));
+	localStorage.setItem("Volume", parseInt(document.getElementById("VideoVolumeSlider").value));
 	SetVideoVolume();
 }
 
 function SetVideoVolume()
 {
-	let volume = sessionStorage.getItem("Volume", 100);
+	let volume = localStorage.getItem("Volume") ?? 100;
 
 	player.setVolume(volume);
 	document.getElementById("VideoVolumeSlider").value = volume;
